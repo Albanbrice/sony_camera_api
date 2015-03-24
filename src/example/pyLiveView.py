@@ -232,6 +232,123 @@ class liveview_grabber(threading.Thread):
          print "terminated"
 
 # =====================================================================
+class file_grabber(threading.Thread):
+   def run(self):
+      global options, grabber, decoder, display, image_copy
+
+      if options.debug:
+         print "using file grabber"
+   
+      self.active = False
+
+      # grabber control signals
+      self.event_start_stream = threading.Event()
+      self.event_stop_stream = threading.Event()
+      self.event_stopped_stream = threading.Event()
+      self.event_terminate = threading.Event()
+      self.event_terminated = threading.Event()
+
+      # decoder control signals
+      self.event_decoding = threading.Event()
+      self.event_decoder_terminated = threading.Event()
+
+      # display control signals
+      self.lock_offscreen = threading.Semaphore()
+
+      # export to other threads
+      grabber = self
+
+      while not self.event_terminate.isSet():
+         if options.gui == True :
+            # load image from file
+            image_file = Image.open(options.file)
+            image_file = image_file.convert("RGB")
+            self.frame_count = 0
+
+            if (image_file == False):
+               self.event_stop_stream.set()
+               self.event_start_stream.clear()
+            else:
+               display.width = (image_file.size)[0]
+               display.height= (image_file.size)[1]
+               image_copy = image_file.copy()
+
+            display.offscreen = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, display.width, display.height)
+            display.copy_to_offscreen(image_copy)
+
+         if self.event_start_stream.isSet():
+            self.frame_count = 0
+            self.active = True
+
+            # and we're ready to go..
+            self.start_time = datetime.datetime.now()
+            self.event_start_stream.clear()
+
+            # loop until request to stop
+            while not self.event_stop_stream.isSet():
+               if options.gui == True :
+                  # copy the image to the display
+                  display.copy_to_offscreen(image_copy)
+  
+               self.frame_count = self.frame_count + 1
+
+               if self.event_terminate.isSet():
+                  break
+
+         if self.event_stop_stream.isSet():
+            # clean up
+            self.end_time = datetime.datetime.now()
+            self.event_stop_stream.clear()
+            self.active = False
+
+         time.sleep(0.1)
+
+      # declare that we're done...
+      self.event_terminated.set()
+      self.event_terminate.clear()
+            
+
+   def start_stream(self):
+      if self.active == False:
+         self.active = True 
+         self.event_start_stream.set()
+         while self.event_start_stream.isSet():
+            time.sleep(0.1)
+
+         if options.debug:
+            print "started capture"
+
+         self.event_stopped_stream.clear()
+
+   def stop_stream(self):
+      if self.active == True:
+         self.event_stop_stream.set()
+         self.active = False
+
+         while self.event_stop_stream.isSet():
+            time.sleep(0.1)
+
+         if options.debug:
+            elapsed = self.end_time - self.start_time
+            print "Stopped capture: frames = ", self.frame_count,
+            print ", delta = ", elapsed.seconds + (float(elapsed.microseconds) / 1000000),
+            print ", fps = ", self.frame_count / (elapsed.seconds + (float(elapsed.microseconds) / 1000000))
+
+
+   def terminate(self):
+      if options.debug:
+         print "terminating..."
+
+      self.stop_stream()
+      self.event_terminate.set()
+
+      while self.event_terminate.isSet():
+         time.sleep(0.1)
+ 
+      if options.debug:
+         print "terminated"
+
+# =====================================================================
 class liveview_display:
    def copy_to_offscreen(self, image):
       global options, grabber, display
@@ -370,7 +487,10 @@ class liveview_display:
          window.show()
 
       # Attempt to find camera and use it
-      grabber = liveview_grabber()
+      if options.file:
+         grabber = file_grabber()
+      else:
+         grabber = liveview_grabber()
       grabber.start()
 
       if options.autostart:
@@ -394,6 +514,7 @@ def Run():
               help="Display LiveView images using pyGTK GUI" )
       parser.add_argument("-a", "--autostart", action="store_true", dest="autostart", default=None,
               help="Automatically start capturing video (default if no GUI)" )
+      parser.add_argument("-F", "--file", dest="file", help="Get image from file, rather than camera" )
 
    options = parser.parse_args()
 
