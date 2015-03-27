@@ -16,6 +16,10 @@ camera/stopIntervalStillRec:\
 camera/startIntervalStillRec:\
 camera/stopAudioRec:\
 camera/startAudioRec:\
+camera/getSupportedContShootingSpeed:\
+camera/getAvailableContShootingSpeed:\
+camera/getContShootingSpeed:\
+camera/setContShootingSpeed:\
 camera/getSupportedShutterSpeed:\
 camera/getAvailableShutterSpeed:\
 camera/getShutterSpeed:\
@@ -30,6 +34,10 @@ camera/getSupportedExposureMode:\
 camera/getAvailableExposureMode:\
 camera/getExposureMode:\
 camera/setExposureMode:\
+camera/getSupportedContShootingMode:\
+camera/getAvailableContShootingMode:\
+camera/getContShootingMode:\
+camera/setContShootingMode:\
 camera/getSupportedFlashMode:\
 camera/getAvailableFlashMode:\
 camera/getFlashMode:\
@@ -75,12 +83,25 @@ camera/getSupportedLiveviewSize:\
 camera/getAvailableLiveviewSize:\
 camera/getLiveviewSize:\
 camera/setLiveviewSize:\
+camera/stopContShooting:\
+camera/startContShooting:\
+camera/setZoomSetting:\
+camera/setFlipSetting:\
+camera/getSupportedColorSetting:\
+camera/getAvailableColorSetting:\
+camera/getColorSetting:\
+camera/setColorSetting:\
+camera/setTvColorSystem:\
 camera/actZoom:\
 camera/getStorageInformation:\
 camera/getSupportedExposureCompensation:\
 camera/getAvailableExposureCompensation:\
 camera/getExposureCompensation:\
 camera/setExposureCompensation:\
+camera/getSupportedSceneSelection:\
+camera/getAvailableSceneSelection:\
+camera/getSceneSelection:\
+camera/setSceneSelection:\
 camera/getSupportedCameraFunction:\
 camera/getAvailableCameraFunction:\
 camera/getCameraFunction:\
@@ -88,6 +109,7 @@ camera/setCameraFunction:\
 camera/cancelTouchAFPosition:\
 camera/getTouchAFPosition:\
 camera/setTouchAFPosition:\
+camera/setLiveviewFrameInfo:\
 camera/getApplicationInfo:\
 camera/getSupportedFNumber:\
 camera/getAvailableFNumber:\
@@ -99,8 +121,20 @@ camera/getSelfTimer:\
 camera/setSelfTimer:\
 camera/cancelHalfPressShutter:\
 camera/actHalfPressShutter:\
+camera/getSupportedTrackingFocus:\
+camera/getAvailableTrackingFocus:\
+camera/cancelTrackingFocus:\
+camera/actTrackingFocus:\
+camera/getTrackingFocus:\
+camera/setTrackingFocus:\
+camera/getSupportedMovieFileFormat:\
+camera/getAvailableMovieFileFormat:\
+camera/getMovieFileFormat:\
+camera/setMovieFileFormat:\
 camera/getSupportedProgramShift:\
 camera/setProgramShift:\
+camera/getContentCount:\
+camera/getSourceList:\
 camera/getEvent:\
 camera/getAvailableApiList:\
 camera/stopLiveview:\
@@ -109,6 +143,10 @@ camera/getSupportedMovieQuality:\
 camera/getAvailableMovieQuality:\
 camera/getMovieQuality:\
 camera/setMovieQuality:\
+camera/getSupportedStillQuality:\
+camera/getAvailableStillQuality:\
+camera/getStillQuality:\
+camera/setStillQuality:\
 "
 
 camera = SonyAPI()
