@@ -1,0 +1,50 @@
+Searching for camera
+Available calls:
+getMethodTypes
+getAvailableApiList
+setShootMode
+getShootMode
+getSupportedShootMode
+getAvailableShootMode
+setSteadyMode
+getSteadyMode
+getSupportedSteadyMode
+getAvailableSteadyMode
+setViewAngle
+getViewAngle
+getSupportedViewAngle
+getAvailableViewAngle
+setMovieQuality
+getMovieQuality
+getSupportedMovieQuality
+getAvailableMovieQuality
+startLiveview
+stopLiveview
+startMovieRec
+stopMovieRec
+startIntervalStillRec
+stopIntervalStillRec
+setCameraFunction
+getCameraFunction
+getSupportedCameraFunction
+getAvailableCameraFunction
+getStorageInformation
+getApplicationInfo
+getVersions
+getEvent
+--
+getSupportedShootMode :
+{'id': 1, 'result': [['movie', 'intervalstill']]}
+
+getSupportedSteadyMode :
+{'id': 1, 'result': [['off', 'on']]}
+
+getSupportedViewAngle :
+{'id': 1, 'result': [[120, 170]]}
+
+getSupportedMovieQuality :
+{'id': 1, 'result': [['HQ', 'STD', 'SLOW', 'SSLOW', 'VGA', 'PS']]}
+
+getSupportedCameraFunction :
+{'id': 1, 'result': [['Remote Shooting', 'Contents Transfer']]}
+
