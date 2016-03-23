@@ -138,7 +138,7 @@ import json
 # |        |type    |                 |                   |
 # +-------------------------------------------------------+
 #
-# Payload Header
+# Payload Header (Payload Type = 1)
 # 0--------------------------4-------------------7--------8
 # | Start code               |  JPEG data size   | Padding|
 # +--------------------------4------5---------------------+
@@ -149,8 +149,7 @@ import json
 # | ...                                                   |
 # ------------------------------------------------------128
 #
-# Payload Data
-# in case payload type = 0x01
+# Payload Data (Payload Type = 1)
 # +-------------------------------------------------------+
 # | JPEG data size ...                                    |
 # +-------------------------------------------------------+
@@ -158,15 +157,34 @@ import json
 # +-------------------------------------------------------+
 # | Padding data size ...                                 |
 # ------------------------------JPEG data size + Padding data size
+#
+#
+# Payload Header (Payload Type = 2)
+# 0--------------------------4-------------------7--------8
+# | Start code               |  JPEG data size   | Padding|
+# 0-----------2--------------4---------------6------------8
+# | Version   | Frame Count  |  Frame Size   | ..         |
+# +-------------------------------------------------------+
+# | .. 114[B] Reserved                                    |
+# +-------------------------------------------------------+
+# | ...                                                   |
+# ------------------------------------------------------128
+#
+# Payload Data (Payload Type = 2)
+# +-------------------------------------------------------+
+# | Frame info size ...                                   |
+# +-------------------------------------------------------+
+# | ...                                                   |
+# +-------------------------------------------------------+
+# | Padding data size ...                                 |
+# -----------------------------Frame info size + Padding data size
 
-import binascii
+import struct
 
 def common_header(bytes):
-    start_byte = int(binascii.hexlify(bytes[0]), 16)
-    payload_type = int(binascii.hexlify(bytes[1]), 16)
-    sequence_number = int(binascii.hexlify(bytes[2:4]), 16)
-    time_stamp = int(binascii.hexlify(bytes[4:8]), 16)
-    if start_byte != 255: # 0xff fixed
+    (start_byte, payload_type, sequence_number, time_stamp) = \
+        struct.unpack(">BBHL", bytes[0:8])
+    if start_byte != 0xFF: #  fixed-value
         return '[error] wrong QX livestream start byte'
 
     common_header = {'start_byte': start_byte,
@@ -178,17 +196,17 @@ def common_header(bytes):
 
 def payload_header(bytes, payload_type=None):
     if payload_type==None:
-        payload_type=1	# Assume JPEG
+        payload_type=1	# Assume JPEG if not set
 
-    start_code = int(binascii.hexlify(bytes[0:4]), 16)
-    jpeg_data_size = int(binascii.hexlify(bytes[4:7]), 16)
-    padding_size = int(binascii.hexlify(bytes[7]), 16)
+    # struct can't handle 3byte values... :-(
+    (start_code, data_size_hi, data_size_lo, padding_size) = \
+        struct.unpack(">LBHB", bytes[0:8])
 
-    if start_code != 607479929:
+    if start_code != 0x24356879: # fixed-value
         return '[error] wrong QX payload header start'
 
     payload_header = {'start_code': start_code,
-                      'jpeg_data_size': jpeg_data_size,
+                      'jpeg_data_size': (data_size_hi << 16) + data_size_lo,
                       'padding_size': padding_size,
                     }
 
@@ -202,28 +220,21 @@ def payload_header(bytes, payload_type=None):
     return payload_header
 
 def payload_header_jpeg(bytes):
-    reserved_1 = int(binascii.hexlify(bytes[8:12]), 16)
-    flag = int(binascii.hexlify(bytes[12]), 16) # 0x00, fixed
-    reserved_2 = int(binascii.hexlify(bytes[13:]), 16)
-    if flag != 0:
+    (reserved_1, flag)  = struct.unpack(">LB", bytes[8:13])
+    if flag != 0x0: # fixed value
         return '[error] wrong QX payload header flag'
 
     payload_header = {'reserved_1': reserved_1,
                       'flag': flag,
-                      'reserved_2':reserved_2,
                     }
     return payload_header
 
 def payload_header_frameinfo(bytes):
-    version = int(binascii.hexlify(bytes[8:10]), 16)
-    frame_count = int(binascii.hexlify(bytes[10:12]), 16)
-    frame_size = int(binascii.hexlify(bytes[12:14]), 16)
-    reserved_2 = int(binascii.hexlify(bytes[14:]), 16)
+    (version, frame_count, frame_size) = struct.unpack(">HHH", bytes[8:14])
 
     payload_header = {'version': version,
                       'frame_count': frame_count,
                       'frame_size': frame_size,
-                      'reserved_2':reserved_2,
                     }
     return payload_header
 
