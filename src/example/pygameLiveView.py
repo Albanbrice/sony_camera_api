@@ -150,9 +150,6 @@ screen.set_alpha(None)
 
 # Loop forever, or until user quits or presses 'ESC' key
 pygame.event.set_allowed([pygame.QUIT, pygame.KEYDOWN])
-
-rate = rate_eval()
-
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
