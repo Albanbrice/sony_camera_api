@@ -3,11 +3,20 @@
 # Credentials shamelessly stolen from:
 # https://github.com/Tsar/sony_qx_controller/blob/master/sony_qx_controller.py#L144
 
-from pysony import SonyAPI, payload_header
+import pysony
 import base64, hashlib
 import six
 
-camera = SonyAPI()
+print("Searching for camera...")
+
+search = pysony.ControlPoint()
+cameras =  search.discover()
+
+if len(cameras):
+    camera = pysony.SonyAPI(QX_ADDR=cameras[0])
+else:
+    print("No camera found, aborting")
+    quit()
 
 # This call fails with a '403 - Permission Error' on the HDR-AS15 (fw V3.0)
 # Once authenticated it will complete sucessfully

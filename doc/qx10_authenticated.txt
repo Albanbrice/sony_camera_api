@@ -67,7 +67,7 @@ getSupportedBeepMode :
 {'id': 1, 'result': [['Off', 'On', 'Shutter Only']]}
 
 getSupportedCameraFunction :
-[ERROR] camera doesn't workHTTP Error 403: Forbidden
+{'id': 1, 'result': [['Remote Shooting', 'Contents Transfer']]}
 
 getSupportedStillSize :
 {'id': 1, 'result': [[{'aspect': '16:9', 'size': '13M'}, {'aspect': '16:9', 'size': '2M'}, {'aspect': '4:3', 'size': '18M'}, {'aspect': '4:3', 'size': '5M'}]]}
