@@ -5,74 +5,123 @@ import six
 import argparse
 
 everything = {\
+    "getAvailableAELock",\
+    "getAvailableApiList",\
     "getAvailableAudioRecording",\
     "getAvailableAutoPowerOff",\
     "getAvailableBeepMode",\
+    "getAvailableBeepVolume",\
+    "getAvailableBluetoothRemotePowerMode",\
+    "getAvailableBracketShootMode",\
     "getAvailableCameraFunction",\
     "getAvailableColorSetting",\
     "getAvailableContShootingMode",\
     "getAvailableContShootingSpeed",\
+    "getAvailableCreativeStyle",\
     "getAvailableExposureCompensation",\
     "getAvailableExposureMode",\
     "getAvailableFlashMode",\
     "getAvailableFlipSetting",\
     "getAvailableFNumber",\
     "getAvailableFocusMode",\
+    "getAvailableHighlightSceneFaceSetting",\
     "getAvailableInfraredRemoteControl",\
+    "getAvailableIntervalAutoExposure",\
+    "getAvailableIntervalShots",\
     "getAvailableIntervalTime",\
     "getAvailableIsoSpeedRate",\
+    "getAvailableLampMode",\
+    "getAvailableLiveviewFrameInfo",\
     "getAvailableLiveviewSize",\
     "getAvailableLoopRecTime",\
     "getAvailableMovieFileFormat",\
     "getAvailableMovieQuality",\
+    "getAvailableMovieRecQuality",\
+    "getAvailableNearModeInPF",\
+    "getAvailablePictureEffect",\
     "getAvailablePostviewImageSize",\
     "getAvailableSceneSelection",\
     "getAvailableSelfTimer",\
+    "getAvailableShootingFromPowerOff",\
     "getAvailableShootMode",\
     "getAvailableShutterSpeed",\
+    "getAvailableSilentShootingSetting",\
     "getAvailableSteadyMode",\
     "getAvailableStillQuality",\
     "getAvailableStillSize",\
+    "getAvailableTimeCodeFormat",\
+    "getAvailableTimeCodeMakeMode",\
+    "getAvailableTimeCodePreset",\
+    "getAvailableTimeCodeRunMode",\
     "getAvailableTrackingFocus",\
     "getAvailableTvColorSystem",\
+    "getAvailableUserBitTimeRec",\
+    "getAvailableViewAngle",\
+    "getAvailableViewAngleMode",\
     "getAvailableViewAngle",\
     "getAvailableWhiteBalance",\
     "getAvailableWindNoiseReduction",\
+    "getAvailableWirelessFlashSetting",\
     "getAvailableZoomSetting",\
+    "getSupportedAELock",\
+    "getSupportedApiInfo",\
     "getSupportedAudioRecording",\
     "getSupportedAutoPowerOff",\
     "getSupportedBeepMode",\
+    "getSupportedBeepVolume",\
+    "getSupportedBluetoothRemotePowerMode",\
+    "getSupportedBracketShootMode",\
     "getSupportedCameraFunction",\
     "getSupportedColorSetting",\
     "getSupportedContShootingMode",\
     "getSupportedContShootingSpeed",\
+    "getSupportedCreativeStyle",\
     "getSupportedExposureCompensation",\
     "getSupportedExposureMode",\
     "getSupportedFlashMode",\
     "getSupportedFlipSetting",\
     "getSupportedFNumber",\
     "getSupportedFocusMode",\
+    "getSupportedFocusModes",\
+    "getSupportedHighlightSceneFaceSetting",\
     "getSupportedInfraredRemoteControl",\
+    "getSupportedIntervalAutoExposure",\
+    "getSupportedIntervalShots",\
     "getSupportedIntervalTime",\
     "getSupportedIsoSpeedRate",\
+    "getSupportedLampMode",\
     "getSupportedLiveviewSize",\
     "getSupportedLoopRecTime",\
     "getSupportedMovieFileFormat",\
     "getSupportedMovieQuality",\
+    "getSupportedNearModeInPF",\
+    "getSupportedPictureEffect",\
+    "getSupportedPictureSizes",\
     "getSupportedPostviewImageSize",\
+    "getSupportedPreviewFpsRange",\
+    "getSupportedPreviewSizes",\
     "getSupportedProgramShift",\
     "getSupportedSceneSelection",\
     "getSupportedSelfTimer",\
+    "getSupportedShootingFromPowerOff",\
     "getSupportedShootMode",\
     "getSupportedShutterSpeed",\
+    "getSupportedSilentShootingSetting",\
     "getSupportedSteadyMode",\
     "getSupportedStillQuality",\
     "getSupportedStillSize",\
+    "getSupportedTimeCodeFormat",\
+    "getSupportedTimeCodeMakeMode",\
+    "getSupportedTimeCodePreset",\
+    "getSupportedTimeCodeRunMode",\
     "getSupportedTrackingFocus",\
     "getSupportedTvColorSystem",\
+    "getSupportedUserBitTimeRec",\
     "getSupportedViewAngle",\
+    "getSupportedViewAngleMode",\
     "getSupportedWhiteBalance",\
     "getSupportedWindNoiseReduction",\
+    "getSupportedWirelessFlashSetting",\
     "getSupportedZoomSetting"}
 
 parser = argparse.ArgumentParser(prog="dump_camera_capabilities")
