@@ -922,4 +922,147 @@ class SonyAPI():
     def getVersions(self, target=None):
         return self._cmd(method="getVersions", target=target)
 
+    def getAvailableAELock(self):
+        return self._cmd(method="getAvailableAELock")
+
+    def getAvailableBeepVolume(self):
+        return self._cmd(method="getAvailableBeepVolume")
+
+    def getAvailableBluetoothRemotePowerMode(self):
+        return self._cmd(method="getAvailableBluetoothRemotePowerMode")
+
+    def getAvailableBracketShootMode(self):
+        return self._cmd(method="getAvailableBracketShootMode")
+
+    def getAvailableCreativeStyle(self):
+        return self._cmd(method="getAvailableCreativeStyle")
+
+    def getAvailableHighlightSceneFaceSetting(self):
+        return self._cmd(method="getAvailableHighlightSceneFaceSetting")
+
+    def getAvailableIntervalAutoExposure(self):
+        return self._cmd(method="getAvailableIntervalAutoExposure")
+
+    def getAvailableIntervalShots(self):
+        return self._cmd(method="getAvailableIntervalShots")
+
+    def getAvailableLampMode(self):
+        return self._cmd(method="getAvailableLampMode")
+
+    def getAvailableLiveviewFrameInfo(self):
+        return self._cmd(method="getAvailableLiveviewFrameInfo")
+
+    def getAvailableMovieRecQuality(self):
+        return self._cmd(method="getAvailableMovieRecQuality")
+
+    def getAvailableNearModeInPF(self):
+        return self._cmd(method="getAvailableNearModeInPF")
+
+    def getAvailablePictureEffect(self):
+        return self._cmd(method="getAvailablePictureEffect")
+
+    def getAvailableShootingFromPowerOff(self):
+        return self._cmd(method="getAvailableShootingFromPowerOff")
+
+    def getAvailableSilentShootingSetting(self):
+        return self._cmd(method="getAvailableSilentShootingSetting")
+
+    def getAvailableTimeCodeFormat(self):
+        return self._cmd(method="getAvailableTimeCodeFormat")
+
+    def getAvailableTimeCodeMakeMode(self):
+        return self._cmd(method="getAvailableTimeCodeMakeMode")
+
+    def getAvailableTimeCodePreset(self):
+        return self._cmd(method="getAvailableTimeCodePreset")
+
+    def getAvailableTimeCodeRunMode(self):
+        return self._cmd(method="getAvailableTimeCodeRunMode")
+
+    def getAvailableUserBitTimeRec(self):
+        return self._cmd(method="getAvailableUserBitTimeRec")
+
+    def getAvailableViewAngle(self):
+        return self._cmd(method="getAvailableViewAngle")
+
+    def getAvailableViewAngleMode(self):
+        return self._cmd(method="getAvailableViewAngleMode")
+
+    def getAvailableWirelessFlashSetting(self):
+        return self._cmd(method="getAvailableWirelessFlashSetting")
+
+    def getSupportedAELock(self):
+        return self._cmd(method="getSupportedAELock")
+
+    def getSupportedApiInfo(self):
+        return self._cmd(method="getSupportedApiInfo")
+
+    def getSupportedBeepVolume(self):
+        return self._cmd(method="getSupportedBeepVolume")
+
+    def getSupportedBluetoothRemotePowerMode(self):
+        return self._cmd(method="getSupportedBluetoothRemotePowerMode")
+
+    def getSupportedBracketShootMode(self):
+        return self._cmd(method="getSupportedBracketShootMode")
+
+    def getSupportedCreativeStyle(self):
+        return self._cmd(method="getSupportedCreativeStyle")
+
+    def getSupportedFocusModes(self):
+        return self._cmd(method="getSupportedFocusModes")
+
+    def getSupportedHighlightSceneFaceSetting(self):
+        return self._cmd(method="getSupportedHighlightSceneFaceSetting")
+
+    def getSupportedIntervalAutoExposure(self):
+        return self._cmd(method="getSupportedIntervalAutoExposure")
+
+    def getSupportedIntervalShots(self):
+        return self._cmd(method="getSupportedIntervalShots")
+
+    def getSupportedLampMode(self):
+        return self._cmd(method="getSupportedLampMode")
+
+    def getSupportedNearModeInPF(self):
+        return self._cmd(method="getSupportedNearModeInPF")
+
+    def getSupportedPictureEffect(self):
+        return self._cmd(method="getSupportedPictureEffect")
+
+    def getSupportedPictureSizes(self):
+        return self._cmd(method="getSupportedPictureSizes")
+
+    def getSupportedPreviewFpsRange(self):
+        return self._cmd(method="getSupportedPreviewFpsRange")
+
+    def getSupportedPreviewSizes(self):
+        return self._cmd(method="getSupportedPreviewSizes")
+
+    def getSupportedShootingFromPowerOff(self):
+        return self._cmd(method="getSupportedShootingFromPowerOff")
+
+    def getSupportedSilentShootingSetting(self):
+        return self._cmd(method="getSupportedSilentShootingSetting")
+
+    def getSupportedTimeCodeFormat(self):
+        return self._cmd(method="getSupportedTimeCodeFormat")
+
+    def getSupportedTimeCodeMakeMode(self):
+        return self._cmd(method="getSupportedTimeCodeMakeMode")
+
+    def getSupportedTimeCodePreset(self):
+        return self._cmd(method="getSupportedTimeCodePreset")
+
+    def getSupportedTimeCodeRunMode(self):
+        return self._cmd(method="getSupportedTimeCodeRunMode")
+
+    def getSupportedUserBitTimeRec(self):
+        return self._cmd(method="getSupportedUserBitTimeRec")
+
+    def getSupportedViewAngleMode(self):
+        return self._cmd(method="getSupportedViewAngleMode")
+
+    def getSupportedWirelessFlashSetting(self):
+        return self._cmd(method="getSupportedWirelessFlashSetting")
 
