@@ -49,6 +49,9 @@ class ControlPoint(object):
         packets = self._listen_for_discover(duration)
         endpoints = []
         for host,addr,data in packets:
+            if data.split(' ')[1] != '200':
+                # HTTP error
+                continue
             resp = self._parse_ssdp_response(data)
             try:
                 endpoint = self._read_device_definition(resp['location'])
