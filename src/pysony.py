@@ -1066,3 +1066,8 @@ class SonyAPI():
     def getSupportedWirelessFlashSetting(self):
         return self._cmd(method="getSupportedWirelessFlashSetting")
 
+    def startBulbShooting(self):
+        return self._cmd(method="startBulbShooting")
+
+    def stopBulbShooting(self):
+        return self._cmd(method="stopBulbShooting")
